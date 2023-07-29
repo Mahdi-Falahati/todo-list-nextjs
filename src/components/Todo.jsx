@@ -9,6 +9,7 @@ import { styled } from "@mui/material/styles";
 import { purple } from "@mui/material/colors";
 // icons
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import NotesIcon from '@mui/icons-material/Notes';
 
 export default function Todo() {
   const { register, handleSubmit, reset } = useForm();
@@ -21,15 +22,18 @@ export default function Todo() {
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <BoxWrapper my={5}>
-        <TextField
-          {...register("todo", { required: true })}
-          id="outlined-basic"
-          label="Write Your Todo..."
-          variant="outlined"
-          sx={{
-            width: "300px",
-          }}
-        />
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          <NotesIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+          <TextField
+            {...register("todo", { required: true })}
+            id="todo-input"
+            label="Write Your Todo..."
+            variant="standard"
+            sx={{
+              width: "300px",
+            }}
+          />
+        </Box>
         <AddTodoButton
           type="submit"
           endIcon={<PlaylistAddIcon />}
