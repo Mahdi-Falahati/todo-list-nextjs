@@ -2,6 +2,11 @@
 import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Stack from "@mui/material/Stack";
+import { purple } from "@mui/material/colors";
+// icons
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 export default function Todo() {
   const { register, handleSubmit, reset } = useForm();
@@ -20,9 +25,26 @@ export default function Todo() {
         variant="outlined"
         fullWidth
       />
-      <Button type="submit" variant="contained" color="primary">
+      <AddTodoButton
+        type="submit"
+        endIcon={<PlaylistAddIcon />}
+        variant="contained"
+      >
         Add Todo
-      </Button>
+      </AddTodoButton>
     </form>
   );
 }
+
+const AddTodoButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(purple[500]),
+  backgroundColor: purple[500],
+  letterSpacing: "2px",
+  borderRadius: "10px",
+  transition: "all 1s",
+  width: "160px",
+  "&:hover": {
+    backgroundColor: purple[700],
+    transform: "scale(1.1,1)",
+  },
+}));
