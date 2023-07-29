@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: 0,
-  todo: [{ title: "this is a example todo", id: 0 }],
+  todos: [{ id: 0, todo: "First todo for test" }],
 };
 
-export const TodoSlice = createSlice({
+export const todoSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
@@ -15,6 +15,7 @@ export const TodoSlice = createSlice({
   },
 });
 
-export const { increment } = counterSlice.actions;
+// Action creators are generated for each case reducer function
+export const { counter } = todoSlice.actions;
 
-export default counterSlice.reducer;
+export default todoSlice.reducer;
