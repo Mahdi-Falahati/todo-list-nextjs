@@ -1,11 +1,14 @@
 "use client";
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Stack } from "@mui/material";
+import styled from "@emotion/styled";
+
+import { useSelector } from "react-redux";
 import { useState } from "react";
+import TodoComponent from "./TodoComponent";
 
 export default function Output() {
   const count = useSelector((state) => state.counter);
@@ -19,24 +22,22 @@ export default function Output() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="todo tabs"
-        >
+        <Tabs value={value} onChange={handleChange} aria-label="todo tabs">
           <Tab label="Todos" {...a11yProps(0)} />
           <Tab label="Completed" {...a11yProps(1)} />
-          <Tab label="UnCompleted" {...a11yProps(2)}/>
+          <Tab label="UnCompleted" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        Todos
+        <StackWrapper>
+          <TodoComponent/>
+        </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Completed
+        <StackWrapper>Completed</StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        UnCompleted
+        <StackWrapper>UnCompleted</StackWrapper>
       </CustomTabPanel>
     </Box>
   );
@@ -53,11 +54,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -74,3 +71,10 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+
+const StackWrapper = styled(Stack)(() => ({
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center",
+  flexWrap: "wrap",
+}));
