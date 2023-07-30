@@ -1,5 +1,5 @@
 "use client";
-import { Box, ButtonGroup, Stack } from "@mui/material";
+import { Box, ButtonGroup } from "@mui/material";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import PreviewIcon from "@mui/icons-material/Preview";
 import Typography from "@mui/material/Typography";
@@ -7,9 +7,11 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { IconBtn, TodoElement } from "./customComponent";
 
-export default function TodoComponent({ title, description }) {
+export default function TodoComponent(todo) {
   const [open, setOpen] = useState(false);
-
+  const { title, description } = todo;
+  console.log(description);
+  console.log(title);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
