@@ -10,9 +10,8 @@ import TodoComponent from "./TodoComponent";
 import { StackWrapper } from "./customComponent";
 
 export default function Output() {
-  const count = useSelector((state) => state.counter);
+  const todos = useSelector((state) => state.todos);
   const [value, setValue] = useState(0);
-  console.log(count);
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -29,7 +28,15 @@ export default function Output() {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <StackWrapper>
-          <TodoComponent/>
+          {todos?.map((todo, index) => {
+            console.log(todo)
+            return (
+              <TodoComponent
+                key={index}
+                todo={todo}
+              />
+            );
+          })}
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
