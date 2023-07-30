@@ -17,7 +17,7 @@ import {
   CenterElement,
   Transition,
 } from "./customComponent";
-import { Box, TextField } from "@mui/material";
+import { Box, Stack, TextField } from "@mui/material";
 
 export default function FormDialog() {
   const [open, setOpen] = useState(false);
@@ -69,18 +69,37 @@ export default function FormDialog() {
             my={5}
             sx={{ flexDirection: { xs: "column", sm: "row" } }}
           >
-            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-              <NotesIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField
-                {...register("todo", { required: true })}
-                id="todo-input"
-                label="Write Your Todo..."
-                variant="standard"
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-end",
+                flexDirection: "column",
+              }}
+            >
+              <Stack
                 sx={{
-                  width: { xs: "250px", sm: "350px" },
+                  alignItems: "center",
+                  flexDirection: "row",
                 }}
+              >
+                <NotesIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <TextField
+                  {...register("todo-title", { required: true })}
+                  id="todo-input-title"
+                  label="Write Your Todo..."
+                  variant="standard"
+                  sx={widthStyle}
+                />
+              </Stack>
+              <TextField
+                {...register("todo-description", { required: true })}
+                id="todo-input-description"
+                label="Description"
+                multiline
+                rows={5}
+                variant="standard"
+                sx={widthStyle}
               />
-              
             </Box>
           </BoxWrapper>
           <CenterElement>
@@ -100,3 +119,8 @@ export default function FormDialog() {
     </div>
   );
 }
+
+const widthStyle = {
+  marginBottom: "20px",
+  width: { xs: "250px", sm: "350px" },
+};
