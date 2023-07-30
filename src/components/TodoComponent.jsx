@@ -6,13 +6,21 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { IconBtn, TodoElement } from "./customComponent";
+import { useDispatch } from "react-redux";
+import { AddComplete } from "@/store/TodoSlice";
 
 export default function TodoComponent(todo) {
   const [open, setOpen] = useState(false);
-  const { title, description, id, duration, complete } = todo.todo;
+  const [data, setData] = useState(todo.todo);
+  const dispatch = useDispatch();
+  const { title, description, id, duration, complete } = data;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const completeTodoHandle = () => {
+    dispatch(AddComplete(id));
+    setData({ ...data, complete:true });
+  };
 
   return (
     <TodoElement
@@ -38,7 +46,7 @@ export default function TodoComponent(todo) {
           <IconBtn onClick={handleOpen}>
             <PreviewIcon sx={{ fontSize: "30px", color: "red" }} />
           </IconBtn>
-          <IconBtn id={id}>
+          <IconBtn onClick={completeTodoHandle}>
             <AssignmentTurnedInIcon sx={{ fontSize: "29px", color: "green" }} />
           </IconBtn>
         </ButtonGroup>

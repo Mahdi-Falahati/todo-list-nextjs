@@ -12,7 +12,7 @@ export const todoSlice = createSlice({
     AddComplete: (state, action) => {
       state = state.map((item) => {
         if (item.id == action.payload) {
-          return { ...item, complete: true };
+          return { ...item, complete: !item.complete };
         }
         return item;
       });
