@@ -25,17 +25,19 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import { useDispatch } from "react-redux";
 import { AddTodo } from "@/store/TodoSlice";
+import { v4 as uuidv4 } from "uuid";
 
 export default function FormDialog() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm();
+  const { v4: uuidv4 } = require("uuid");
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleFormSubmit = (data) => {
-    dispatch(AddTodo(data));
+    dispatch(AddTodo({ ...data, id: uuidv4() }));
     reset();
   };
 
