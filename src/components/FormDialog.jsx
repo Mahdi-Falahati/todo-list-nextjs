@@ -92,7 +92,7 @@ export default function FormDialog() {
               >
                 <NotesIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
                 <TextField
-                  {...register("todo-title", { required: true })}
+                  {...register("title", { required: true })}
                   id="todo-input-title"
                   label="Write Your Todo..."
                   variant="standard"
@@ -100,7 +100,7 @@ export default function FormDialog() {
                 />
               </Stack>
               <TextField
-                {...register("todo-description", { required: true })}
+                {...register("description", { required: true })}
                 id="todo-input-description"
                 label="Description"
                 multiline
@@ -112,7 +112,7 @@ export default function FormDialog() {
                 <DemoContainer components={["MobileDatePicker"]}>
                   <DemoItem label="Duration">
                     <MobileDatePicker
-                      {...register("todo-duration", { required: true })}
+                      {...register("duration", { required: true })}
                       sx={widthStyle}
                       defaultValue={dayjs("2022-04-17")}
                     />
