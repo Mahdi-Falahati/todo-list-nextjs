@@ -23,22 +23,19 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers";
+import { useDispatch } from "react-redux";
+import { AddTodo } from "@/store/TodoSlice";
 
 export default function FormDialog() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const { register, handleSubmit, reset } = useForm();
 
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const handleFormSubmit = (data) => {
-    console.log(data);
+    dispatch(AddTodo(data));
     reset();
   };
 
