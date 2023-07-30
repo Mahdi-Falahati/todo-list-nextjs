@@ -9,7 +9,7 @@ import { IconBtn, TodoElement } from "./customComponent";
 
 export default function TodoComponent(todo) {
   const [open, setOpen] = useState(false);
-  const { title, description } = todo.todo;
+  const { title, description, id, duration } = todo.todo;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -21,7 +21,8 @@ export default function TodoComponent(todo) {
         width: { xs: "200px", sm: "350px", md: "400px" },
       }}
     >
-      <p>{title}</p>
+      <Typography variant="button">{title}</Typography>
+
       <Box>
         <ButtonGroup
           color="secondary"
@@ -32,7 +33,7 @@ export default function TodoComponent(todo) {
           <IconBtn onClick={handleOpen}>
             <PreviewIcon sx={{ fontSize: "30px", color: "red" }} />
           </IconBtn>
-          <IconBtn>
+          <IconBtn id={id}>
             <AssignmentTurnedInIcon sx={{ fontSize: "29px", color: "green" }} />
           </IconBtn>
         </ButtonGroup>
@@ -43,11 +44,21 @@ export default function TodoComponent(todo) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography
+              id="modal-modal-title"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                borderBottom: "1px solid #000",
+              }}
+              variant="h6"
+              component="h2"
+            >
               {title}
+              <Typography variant="caption">Duration : {duration}</Typography>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {description}
+              Summary : {description}
             </Typography>
           </Box>
         </Modal>
