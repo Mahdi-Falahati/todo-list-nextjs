@@ -32,10 +32,29 @@ export const CenterElement = styled(Box)(() => ({
   alignItems: "center",
 }));
 
-
 export const StackWrapper = styled(Stack)(() => ({
   display: "flex",
   justifyContent: "space-around",
   alignItems: "center",
   flexWrap: "wrap",
+}));
+
+
+export const TodoElement = styled(Stack)(() => ({
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "0px 25px",
+  flexDirection: "row",
+  alignItems: "center",
+  borderRadius: "15px",
+  boxShadow: "inset 2px 2px 5px 0px #999",
+  height: "45px",
+}));
+
+export const IconButton = styled(Button)(() => ({
+  margin: "0px",
+  padding: "0px",
+  border: "none",
+  outline: "none",
+  curser: "pointer",
 }));
