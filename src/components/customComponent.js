@@ -50,7 +50,7 @@ export const TodoElement = styled(Stack)(() => ({
   height: "45px",
 }));
 
-export const IconButton = styled(Button)(() => ({
+export const IconBtn = styled(Button)(() => ({
   margin: "0px",
   padding: "0px",
   border: "none",
