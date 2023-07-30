@@ -9,14 +9,18 @@ import { IconBtn, TodoElement } from "./customComponent";
 
 export default function TodoComponent(todo) {
   const [open, setOpen] = useState(false);
-  const { title, description } = todo;
-  console.log(description);
-  console.log(title);
+  const { title, description } = todo.todo;
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <TodoElement sx={{ width: { xs: "200px", sm: "350px", md: "400px" } }}>
+    <TodoElement
+      sx={{
+        marginBottom: "10px",
+        width: { xs: "200px", sm: "350px", md: "400px" },
+      }}
+    >
       <p>{title}</p>
       <Box>
         <ButtonGroup
