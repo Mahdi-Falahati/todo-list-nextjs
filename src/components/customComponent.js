@@ -39,7 +39,6 @@ export const StackWrapper = styled(Stack)(() => ({
   flexWrap: "wrap",
 }));
 
-
 export const TodoElement = styled(Stack)(() => ({
   display: "flex",
   justifyContent: "space-between",
