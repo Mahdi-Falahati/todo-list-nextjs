@@ -37,6 +37,7 @@ export const StackWrapper = styled(Stack)(() => ({
   justifyContent: "space-around",
   alignItems: "center",
   flexWrap: "wrap",
+  flexDirection: "row",
 }));
 
 export const TodoElement = styled(Stack)(() => ({
