@@ -18,6 +18,13 @@ import {
   Transition,
 } from "./customComponent";
 import { Box, Stack, TextField } from "@mui/material";
+import dayjs from "dayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 
 export default function FormDialog() {
   const [open, setOpen] = useState(false);
@@ -100,6 +107,17 @@ export default function FormDialog() {
                 variant="standard"
                 sx={widthStyle}
               />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["MobileDatePicker"]}>
+                  <DemoItem label="Duration">
+                    <MobileDatePicker
+                      {...register("todo-duration", { required: true })}
+                      sx={widthStyle}
+                      defaultValue={dayjs("2022-04-17")}
+                    />
+                  </DemoItem>
+                </DemoContainer>
+              </LocalizationProvider>
             </Box>
           </BoxWrapper>
           <CenterElement>
