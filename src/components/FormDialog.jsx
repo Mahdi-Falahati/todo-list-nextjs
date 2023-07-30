@@ -37,7 +37,7 @@ export default function FormDialog() {
   const handleClose = () => setOpen(false);
 
   const handleFormSubmit = (data) => {
-    dispatch(AddTodo({ ...data, id: uuidv4() }));
+    dispatch(AddTodo({ ...data, id: uuidv4(), complete: false }));
     reset();
   };
 

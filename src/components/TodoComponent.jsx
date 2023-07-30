@@ -9,7 +9,7 @@ import { IconBtn, TodoElement } from "./customComponent";
 
 export default function TodoComponent(todo) {
   const [open, setOpen] = useState(false);
-  const { title, description, id, duration } = todo.todo;
+  const { title, description, id, duration, complete } = todo.todo;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -21,7 +21,12 @@ export default function TodoComponent(todo) {
         width: { xs: "200px", sm: "350px", md: "400px" },
       }}
     >
-      <Typography variant="button">{title}</Typography>
+      <Typography
+        variant="button"
+        sx={{ textDecoration: !complete ? "none" : "line-through" }}
+      >
+        {title}
+      </Typography>
 
       <Box>
         <ButtonGroup
