@@ -29,7 +29,6 @@ export default function Output() {
       <CustomTabPanel value={value} index={0}>
         <StackWrapper>
           {todos?.map((todo, index) => {
-            console.log(todo)
             return (
               <TodoComponent
                 key={index}
