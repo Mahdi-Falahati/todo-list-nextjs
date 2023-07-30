@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { purple } from "@mui/material/colors";
-import { Box, Button, Slide } from "@mui/material";
+import { Box, Button, Slide, Stack } from "@mui/material";
 import { forwardRef } from "react";
 
 export const BoxWrapper = styled(Box)(() => ({
@@ -31,4 +30,12 @@ export const CenterElement = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+}));
+
+
+export const StackWrapper = styled(Stack)(() => ({
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center",
+  flexWrap: "wrap",
 }));

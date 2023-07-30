@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
-import styled from "@emotion/styled";
 
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import TodoComponent from "./TodoComponent";
+import { StackWrapper } from "./customComponent";
 
 export default function Output() {
   const count = useSelector((state) => state.counter);
@@ -71,10 +70,3 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-
-const StackWrapper = styled(Stack)(() => ({
-  display: "flex",
-  justifyContent: "space-around",
-  alignItems: "center",
-  flexWrap: "wrap",
-}));
