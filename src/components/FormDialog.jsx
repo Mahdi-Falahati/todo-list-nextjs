@@ -22,9 +22,7 @@ import dayjs from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import { MobileDatePicker } from "@mui/x-date-pickers";
 
 export default function FormDialog() {
   const [open, setOpen] = useState(false);
@@ -46,8 +44,14 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
+      <Button
+        variant="outlined"
+        color="secondary"
+        sx={{ width: "200px", borderRadius: "15px" }}
+        onClick={handleClickOpen}
+        endIcon={<PlaylistAddIcon />}
+      >
+        Add Todo
       </Button>
       <Dialog
         fullScreen
