@@ -22,7 +22,7 @@ export default function Output() {
   const completeHandler = (id) => {
     dispatch(AddComplete(id));
   };
-
+  console.log(todos.unCompeleteTodo);
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -47,32 +47,36 @@ export default function Output() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <StackWrapper>
-          {todos.arrayData?.map((todo, index) => {
-            return todo.complete == true ? (
-              <TodoComponent
-                key={index}
-                todo={todo}
-                onComplete={completeHandler}
-              />
-            ) : (
-              "Complete todo is empty"
-            );
-          })}
+          {todos.completeTodo.length === 0 ? (
+            <p>Complete todo is empty</p>
+          ) : (
+            todos.completeTodo.map((todo, index) => {
+              return (
+                <TodoComponent
+                  key={index}
+                  todo={todo}
+                  onComplete={completeHandler}
+                />
+              );
+            })
+          )}
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <StackWrapper>
-          {todos.arrayData?.map((todo, index) => {
-            return todo.complete == false ? (
-              <TodoComponent
-                key={index}
-                todo={todo}
-                onComplete={completeHandler}
-              />
-            ) : (
-              "UnComplete todo is empty"
-            );
-          })}
+        {todos.unCompeleteTodo.length === 0 ? (
+            <p>UnComplete todo is empty</p>
+          ) : (
+            todos.unCompeleteTodo.map((todo, index) => {
+              return (
+                <TodoComponent
+                  key={index}
+                  todo={todo}
+                  onComplete={completeHandler}
+                />
+              );
+            })
+          )}
         </StackWrapper>
       </CustomTabPanel>
     </Box>

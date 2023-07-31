@@ -12,14 +12,20 @@ export const todoSlice = createSlice({
   reducers: {
     AddTodo: (state, action) => {
       state.arrayData.push(action.payload);
+      state.unCompeleteTodo.push(action.payload);
     },
     AddComplete: (state, action) => {
       const result = state.arrayData.map((item) => {
-        if (item.id == action.payload) {
+        if (item.id === action.payload) {
           return { ...item, complete: !item.complete };
         }
         return item;
       });
+
+      state.unCompeleteTodo = state.arrayData.filter(
+        (todo) => todo.id !== action.payload
+      );
+
       state.completeTodo = result;
       state.arrayData = result;
     },
