@@ -47,7 +47,7 @@ export default function Output() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <StackWrapper>
-          {todos.arrayData?.map((todo,index) => {
+          {todos.arrayData?.map((todo, index) => {
             return todo.complete == true ? (
               <TodoComponent
                 key={index}
@@ -61,7 +61,19 @@ export default function Output() {
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <StackWrapper>UnCompleted</StackWrapper>
+        <StackWrapper>
+          {todos.arrayData?.map((todo, index) => {
+            return todo.complete == false ? (
+              <TodoComponent
+                key={index}
+                todo={todo}
+                onComplete={completeHandler}
+              />
+            ) : (
+              "UnComplete todo is empty"
+            );
+          })}
+        </StackWrapper>
       </CustomTabPanel>
     </Box>
   );
