@@ -47,14 +47,17 @@ export default function Output() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <StackWrapper>
-          {/* {todos?.map((todo, index) => { */}
-            {
-              /* console.log(todo.complete) */
-            }
-            {/* if (todo.complete) { */}
-              {/* return <TodoComponent key={index} todo={todo} />; */}
-            {/* } */}
-          {/* })} */}
+          {todos.arrayData?.map((todo,index) => {
+            return todo.complete == true ? (
+              <TodoComponent
+                key={index}
+                todo={todo}
+                onComplete={completeHandler}
+              />
+            ) : (
+              "Complete todo is empty"
+            );
+          })}
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
