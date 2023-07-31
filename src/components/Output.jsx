@@ -9,6 +9,7 @@ import { AddComplete } from "@/store/TodoSlice";
 import { useState } from "react";
 import TodoComponent from "./TodoComponent";
 import { StackWrapper } from "./customComponent";
+import { Typography } from "@mui/material";
 
 export default function Output() {
   const todos = useSelector((state) => state.todos);
@@ -34,21 +35,41 @@ export default function Output() {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <StackWrapper>
-          {todos.arrayData?.map((todo, index) => {
-            return (
-              <TodoComponent
-                key={index}
-                todo={todo}
-                onComplete={completeHandler}
-              />
-            );
-          })}
+          {todos.arrayData.length === 0 ? (
+            <Typography
+              color="error"
+              sx={{ letterSpacing: "2px" }}
+              variant="subtitle2"
+              display="block"
+              gutterBottom
+            >
+              Your to-do list is empty
+            </Typography>
+          ) : (
+            todos.arrayData.map((todo, index) => {
+              return (
+                <TodoComponent
+                  key={index}
+                  todo={todo}
+                  onComplete={completeHandler}
+                />
+              );
+            })
+          )}
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <StackWrapper>
           {todos.completeTodo.length === 0 ? (
-            <p>Complete todo is empty</p>
+            <Typography
+              color="error"
+              sx={{ letterSpacing: "2px" }}
+              variant="subtitle2"
+              display="block"
+              gutterBottom
+            >
+              Your to-do Complete list is empty
+            </Typography>
           ) : (
             todos.completeTodo.map((todo, index) => {
               return (
@@ -64,8 +85,16 @@ export default function Output() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <StackWrapper>
-        {todos.unCompeleteTodo.length === 0 ? (
-            <p>UnComplete todo is empty</p>
+          {todos.unCompeleteTodo.length === 0 ? (
+            <Typography
+              color="error"
+              sx={{ letterSpacing: "2px" }}
+              variant="subtitle2"
+              display="block"
+              gutterBottom
+            >
+              Your to-do UnComplete list is empty
+            </Typography>
           ) : (
             todos.unCompeleteTodo.map((todo, index) => {
               return (
