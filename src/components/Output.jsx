@@ -23,7 +23,7 @@ export default function Output() {
   const completeHandler = (id) => {
     dispatch(AddComplete(id));
   };
-  console.log(todos.unCompeleteTodo);
+  console.log(todos.arrayData);
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

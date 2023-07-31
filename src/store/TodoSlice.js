@@ -15,7 +15,7 @@ export const todoSlice = createSlice({
       state.unCompeleteTodo.push(action.payload);
     },
     AddComplete: (state, action) => {
-      const result = state.arrayData.map((item) => {
+      state.arrayData = state.arrayData.map((item) => {
         if (item.id === action.payload) {
           return { ...item, complete: !item.complete };
         }
@@ -23,11 +23,12 @@ export const todoSlice = createSlice({
       });
 
       state.unCompeleteTodo = state.arrayData.filter(
-        (todo) => todo.id !== action.payload
+        (todo) => todo.complete !== true
       );
 
-      state.completeTodo = result;
-      state.arrayData = result;
+      state.completeTodo = state.arrayData.filter(
+        (todo) => todo.complete === true
+      );
     },
   },
 });
