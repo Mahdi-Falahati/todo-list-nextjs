@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   arrayData: [],
+  completeTodo: [],
+  unCompeleteTodo: [],
 };
 
 export const todoSlice = createSlice({
@@ -12,12 +14,14 @@ export const todoSlice = createSlice({
       state.arrayData.push(action.payload);
     },
     AddComplete: (state, action) => {
-      state.arrayData = state.arrayData.map((item) => {
+      const result = state.arrayData.map((item) => {
         if (item.id == action.payload) {
           return { ...item, complete: !item.complete };
         }
         return item;
       });
+      state.completeTodo = result;
+      state.arrayData = result;
     },
   },
 });
