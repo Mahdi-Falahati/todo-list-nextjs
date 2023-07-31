@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = {
+  arrayData: [],
+};
 
 export const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
     AddTodo: (state, action) => {
-      state.push(action.payload);
+      state.arrayData.push(action.payload);
     },
     AddComplete: (state, action) => {
-      state = state.map((item) => {
+      state.arrayData = state.arrayData.map((item) => {
         if (item.id == action.payload) {
           return { ...item, complete: !item.complete };
         }

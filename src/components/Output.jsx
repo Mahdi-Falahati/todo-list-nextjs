@@ -4,17 +4,23 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AddComplete } from "@/store/TodoSlice";
 import { useState } from "react";
 import TodoComponent from "./TodoComponent";
 import { StackWrapper } from "./customComponent";
 
 export default function Output() {
   const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
+  };
+
+  const completeHandler = (id) => {
+    dispatch(AddComplete(id));
   };
 
   return (
@@ -28,18 +34,28 @@ export default function Output() {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <StackWrapper>
-          {todos?.map((todo, index) => {
+          {todos.arrayData?.map((todo, index) => {
             return (
               <TodoComponent
                 key={index}
                 todo={todo}
+                onComplete={completeHandler}
               />
             );
           })}
         </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <StackWrapper>Completed</StackWrapper>
+        <StackWrapper>
+          {/* {todos?.map((todo, index) => { */}
+            {
+              /* console.log(todo.complete) */
+            }
+            {/* if (todo.complete) { */}
+              {/* return <TodoComponent key={index} todo={todo} />; */}
+            {/* } */}
+          {/* })} */}
+        </StackWrapper>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <StackWrapper>UnCompleted</StackWrapper>
