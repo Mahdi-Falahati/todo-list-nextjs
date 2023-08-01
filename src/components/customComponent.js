@@ -49,6 +49,11 @@ export const TodoElement = styled(Stack)(() => ({
   borderRadius: "15px",
   boxShadow: "inset 2px 2px 5px 0px #999",
   height: "45px",
+  transition: "all 1s",
+  "&:hover": {
+    transform: "scale(1.03)",
+    boxShadow: "inset 2px 2px 5px 0px #666",
+  },
 }));
 
 export const IconBtn = styled(Button)(() => ({
