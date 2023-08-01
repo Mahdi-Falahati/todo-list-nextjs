@@ -41,6 +41,7 @@ export default function FormDialog() {
   const handleFormSubmit = (data) => {
     dispatch(AddTodo({ ...data, id: uuidv4(), complete: false }));
     reset();
+    handleClose();
   };
 
   return (
@@ -161,7 +162,6 @@ export default function FormDialog() {
             <AddTodoButton
               autoFocus
               color="inherit"
-              onClick={handleClose}
               type="submit"
               endIcon={<PlaylistAddIcon />}
               variant="contained"
