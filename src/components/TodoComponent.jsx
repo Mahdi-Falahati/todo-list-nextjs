@@ -66,7 +66,7 @@ export default function TodoComponent({ todo, onComplete }) {
               <Typography variant="caption">Duration : {duration}</Typography>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Summary : {description}
+              Description : {description}
             </Typography>
           </Box>
         </Modal>
