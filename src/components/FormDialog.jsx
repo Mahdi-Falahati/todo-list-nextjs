@@ -28,18 +28,21 @@ import { AddTodo } from "@/store/TodoSlice";
 import { v4 as uuidv4 } from "uuid";
 
 export default function FormDialog() {
+  const { v4: uuidv4 } = require("uuid");
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [duration, setDuration] = useState(dayjs("2022-04-17"));
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
-
-  const { v4: uuidv4 } = require("uuid");
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleFormSubmit = (data) => {
-    dispatch(AddTodo({ ...data, id: uuidv4(), complete: false }));
+    const date = String(duration["$d"]).slice(0, 15).replaceAll(" ", "-");
+    dispatch(
+      AddTodo({ ...data, id: uuidv4(), complete: false, duration: date })
+    );
     reset();
     handleClose();
   };
@@ -149,7 +152,7 @@ export default function FormDialog() {
                 <DemoContainer components={["MobileDatePicker"]}>
                   <DemoItem label="Duration">
                     <MobileDatePicker
-                      {...register("duration", { required: true })}
+                      onChange={(value) => setDuration(value)}
                       sx={widthStyle}
                       defaultValue={dayjs("2022-04-17")}
                     />
