@@ -30,7 +30,9 @@ import { v4 as uuidv4 } from "uuid";
 export default function FormDialog() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
+  const { errors } = formState;
+
   const { v4: uuidv4 } = require("uuid");
 
   const handleClickOpen = () => setOpen(true);
@@ -74,7 +76,7 @@ export default function FormDialog() {
           </Toolbar>
         </AppBar>
 
-        <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
           <BoxWrapper
             my={5}
             sx={{ flexDirection: { xs: "column", sm: "row" } }}
@@ -93,23 +95,55 @@ export default function FormDialog() {
                 }}
               >
                 <NotesIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <Box sx={{ flexDirection: "column" }}>
+                  <TextField
+                    {...register("title", {
+                      required: {
+                        value: true,
+                        message: "Todo title is Required",
+                      },
+                    })}
+                    id="todo-input-title"
+                    label="Write Your Todo..."
+                    variant="standard"
+                    sx={widthStyle}
+                  />
+                  <Typography
+                    color="error"
+                    sx={{ letterSpacing: "2px", textAlign: "center" }}
+                    variant="subtitle2"
+                    display="block"
+                    gutterBottom
+                  >
+                    {errors.title?.message}
+                  </Typography>
+                </Box>
+              </Stack>
+              <Box>
                 <TextField
-                  {...register("title", { required: true })}
-                  id="todo-input-title"
-                  label="Write Your Todo..."
+                  {...register("description", {
+                    required: {
+                      value: true,
+                      message: "Todo Description is Required",
+                    },
+                  })}
+                  id="todo-input-description"
+                  label="Description"
+                  multiline
+                  rows={5}
                   variant="standard"
                   sx={widthStyle}
                 />
-              </Stack>
-              <TextField
-                {...register("description", { required: true })}
-                id="todo-input-description"
-                label="Description"
-                multiline
-                rows={5}
-                variant="standard"
-                sx={widthStyle}
-              />
+                <Typography
+                  color="error"
+                  sx={{ letterSpacing: "2px", textAlign: "center" }}
+                  variant="subtitle2"
+                  display="block"
+                  gutterBottom
+                >
+                  {errors.description?.message}
+                </Typography>
+              </Box>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["MobileDatePicker"]}>
                   <DemoItem label="Duration">
