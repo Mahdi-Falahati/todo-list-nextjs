@@ -4,9 +4,13 @@ import "@testing-library/jest-dom";
 import { TextField } from "@mui/material";
 
 describe("<TextField />", () => {
-  test("renders the label correctly", () => {
+  test("renders the label Description", () => {
     render(<TextField label="Description" />);
     expect(screen.getByLabelText("Description")).toBeInTheDocument();
+  });
+  test("renders the label todo", () => {
+    render(<TextField label="Write Your Todo..." />);
+    expect(screen.getByLabelText("Write Your Todo...")).toBeInTheDocument();
   });
 });
 
