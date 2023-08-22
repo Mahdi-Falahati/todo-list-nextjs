@@ -62,4 +62,8 @@ export const IconBtn = styled(Button)(() => ({
   border: "none",
   outline: "none",
   curser: "pointer",
+  transition: "all 1s",
+  "&:hover": {
+    transform: "scale(1.03) rotate(360deg)",
+  },
 }));
