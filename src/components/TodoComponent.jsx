@@ -6,13 +6,22 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { IconBtn, TodoElement } from "./customComponent";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import { useDispatch } from "react-redux";
+import { DeleteTodo } from "@/store/TodoSlice";
 
 export default function TodoComponent({ todo, onComplete }) {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { title, description, id, duration, complete } = todo;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+ 
+  const deleteTodoHandle = () => {
+    dispatch(DeleteTodo(id));
+  };
+ 
   const completeTodoHandle = () => {
     onComplete(id);
   };
@@ -43,6 +52,9 @@ export default function TodoComponent({ todo, onComplete }) {
           </IconBtn>
           <IconBtn onClick={completeTodoHandle}>
             <AssignmentTurnedInIcon sx={{ fontSize: "29px", color: "green" }} />
+          </IconBtn>
+          <IconBtn onClick={deleteTodoHandle}>
+            <DeleteSweepIcon sx={{ fontSize: "29px", color: "orangered" }} />
           </IconBtn>
         </ButtonGroup>
         <Modal
