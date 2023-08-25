@@ -43,12 +43,11 @@ export const StackWrapper = styled(Stack)(() => ({
 export const TodoElement = styled(Stack)(() => ({
   display: "flex",
   justifyContent: "space-between",
-  padding: "0px 25px",
+  padding: "7px 25px",
   flexDirection: "row",
   alignItems: "center",
   borderRadius: "15px",
   boxShadow: "inset 2px 2px 5px 0px #999",
-  height: "45px",
   transition: "all 1s",
   "&:hover": {
     transform: "scale(1.03)",
